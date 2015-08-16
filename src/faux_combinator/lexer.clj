@@ -23,8 +23,12 @@
               (if-let [[type reg] (find-rule rules string)]
                       (let [match (re-find (make-pattern reg) string)]
                            (recur (subs string (count match))
-                                  ; double down on brackets,
-                                  ; so that into doesn't splice
+                                  ; `into` splices, double brackets
                                   (into tokens [[type match]])))
-                      (throw (new Exception (str "unable to parse code: "
+                      (throw (Exception. (str "unable to parse code: "
                                                  (subs string 0 15)))))))))
+
+
+; TODO custom exception? use RuntimeException?
+; use the clojure "exceptioninfo" class? (using `ex-info` then `ex-data`)
+;  => how to make that work with `(is (thrown?`? is support provided?
