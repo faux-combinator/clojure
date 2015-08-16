@@ -1,8 +1,8 @@
 (ns faux-combinator.parser)
 
-(defvar
+;(defvar
 
 (defn make-parser
   "I don't do a whole lot."
   [rules]
-  (println x "Hello, World!"))
+  (println rules "Hello, World!"))
