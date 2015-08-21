@@ -1,8 +1,11 @@
 (ns faux-combinator.parser)
 
-;(defvar
+(def ^:dynamic current-parser nil)
 
-(defn make-parser
-  "I don't do a whole lot."
-  [rules]
-  (println rules "Hello, World!"))
+(defn- get-current-tokens
+  )
+
+(defmacro make-parser
+  "Installs a parser for the DSL-ish syntax"
+  [& code]
+  `(fn [] ~@code))
