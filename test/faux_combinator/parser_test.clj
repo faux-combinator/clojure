@@ -2,6 +2,15 @@
   (:require [clojure.test :refer :all]
             [faux-combinator.parser :refer :all]))
 
+(def eq-token [:eq "="])
+(def dash-token [:dash "="])
+(def under-token [:under "="])
+(def lparen-token [:lparen "="])
+(def rparen-token [:rparen "="])
+
 (deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 1 1))))
+  (testing "it can parse basic stuff"
+           (let [parser (make-parser
+                         (expect :eq))]
+                1;(is (= (parser )))
+             )))
