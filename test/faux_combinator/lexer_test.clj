@@ -22,6 +22,7 @@
   )
 
 (deftest lexer-multiple-rules-test
+  ; XXX should these be `def`s?
   (let [eq-token [:eq "="]
         dash-token [:dash "-"]
         under-token [:under "_"]
@@ -42,4 +43,5 @@
 (deftest lexer-fails-test
   (testing "it correctly fails to parse invalid strings"
            (let [rules {}]
-                (is (thrown? Exception (lex rules "anything"))))))
+                (is (thrown? Exception (lex rules "anything")))))
+  )
