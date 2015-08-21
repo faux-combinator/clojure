@@ -23,8 +23,7 @@
               (if-let [[type reg] (find-rule rules string)]
                       (let [match (re-find (make-pattern reg) string)]
                            (recur (subs string (count match))
-                                  ; `into` splices, double brackets
-                                  (into tokens [[type match]])))
+                                  (conj tokens [type match])))
                       (throw (Exception. (str "unable to parse code: "
                                                  (subs string 0 15)))))))))
 
