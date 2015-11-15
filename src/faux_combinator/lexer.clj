@@ -25,9 +25,4 @@
                            (recur (subs string (count match))
                                   (conj tokens [type match])))
                       (throw (Exception. (str "unable to parse code: "
-                                                 (subs string 0 15)))))))))
-
-
-; TODO custom exception? use RuntimeException?
-; use the clojure "exceptioninfo" class? (using `ex-info` then `ex-data`)
-;  => how to make that work with `(is (thrown?`? is support provided?
+                                              (subs string 0 15)))))))))
