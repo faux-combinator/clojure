@@ -8,9 +8,12 @@
 (def lparen-token [:lparen "="])
 (def rparen-token [:rparen "="])
 
-(deftest a-test
+(deftest parser-basic-test
   (testing "it can parse basic stuff"
            (let [parser (make-parser
-                         (expect :eq))]
-                1;(is (= (parser )))
+                         (expect :eq)
+                         true)]
+                (is (= true (parser [eq-token])))
              )))
+
+; TODO test for failure
