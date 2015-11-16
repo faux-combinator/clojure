@@ -1,7 +1,6 @@
 (ns faux-combinator.parser)
 
 (def ^:private ^:dynamic current-parser nil)
-(def mdr (+ 2 2))
 
 (defn do-parser
   "Returns a function that has a parser for the DSL-ish syntax.
