@@ -39,7 +39,16 @@
                   (str/join (any-of (expect :eq))))]
       (is (= "") (parser []))
       (is (= "=") (parser [eq-token]))
-      (is (= "===") (parser [eq-token eq-token eq-token]))))
+      (is (= "===") (parser [eq-token eq-token eq-token]))
+      (is (= "") (parser [dash-token]))))
+
+  (testing "can `many-of` any token"
+    (let [parser (make-parser
+                  (str/join (many-of (expect :eq))))]
+      (is (= "=") (parser [eq-token]))
+      (is (= "===") (parser [eq-token eq-token eq-token]))
+      (is (thrown? Exception (parser [])))
+      (is (thrown? Exception (parser [dash-token])))))
   )
 
 (deftest parser-fails-test

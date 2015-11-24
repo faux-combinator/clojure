@@ -71,3 +71,13 @@
     (if-let [result (maybe-impl code)]
       (recur (conj results result))
       results)))
+
+(defmacro many-of
+  "Thunks its argument and calls `many-of-impl`"
+  [& code]
+  `(many-of-impl (fn [] ~@code)))
+
+(defn many-of-impl
+  "Tries to match `code` one or more times"
+  [code]
+  (into [(code)] (any-of-impl code)))
