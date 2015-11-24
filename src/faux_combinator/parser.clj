@@ -46,11 +46,28 @@
         (reset! current-parser prev-tokens)
         false))))
 
-(defn one-of-impl [& code]
+(defmacro one-of
+  "Thunks every piece independently and passes it to `one-of-impl`"
+  [& code]
+  `(one-of-impl ~@(map #(list 'fn [] %) code)))
+
+(defn one-of-impl
+  "Tries every alternative, throws if none matches"
+  [& code]
   (or
    (some maybe-impl code)
    (throw (Exception. "No matching case of `one-of`"))))
 
-(defmacro one-of
+
+(defmacro any-of
+  "Thunks its argument and calls `any-of-impl`"
   [& code]
-  `(one-of-impl ~@(map #(list 'fn [] %) code)))
+  `(any-of-impl (fn [] ~@code)))
+
+(defn any-of-impl
+  "Tries to match `code` as many times as possible (zero if needed)"
+  [code]
+  (loop [results []]
+    (if-let [result (maybe-impl code)]
+      (recur (conj results result))
+      results)))
