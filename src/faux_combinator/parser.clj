@@ -11,7 +11,7 @@
      (binding [current-parser (atom {:tokens tokens})]
        (parser)))))
 
-;; extractors
+;; accessors
 (def ^:private token-type first)
 (def ^:private token-value second)
 
